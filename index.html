@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>专题介绍 · hth</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: #f2f4f7;
+      color: #1f2937;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .page {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* hero 横幅 */
+    .hero {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2.8rem 2.2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e4e9f0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: " ";
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 180px;
+      height: 180px;
+      background: #e6edf8;
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+      color: #121826;
+    }
+    .hero .sub {
+      font-size: 1.05rem;
+      color: #4b5563;
+      max-width: 600px;
+      margin: 0 auto;
+      border-top: 2px solid #dce3ec;
+      padding-top: 1.2rem;
+      display: inline-block;
+      line-height: 1.6;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: #ebf0f8;
+      border-radius: 40px;
+      padding: 0.2rem 1rem;
+      font-size: 0.8rem;
+      color: #2c3e50;
+      margin-top: 0.8rem;
+      border: 1px solid #d0dae8;
+    }
+
+    /* 背景说明卡片 */
+    .backdrop-card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 2rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e0e6ee;
+    }
+    .backdrop-card h2 {
+      font-weight: 450;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      color: #111827;
+    }
+    .backdrop-card p {
+      margin-bottom: 0.9rem;
+      color: #374151;
+    }
+    .backdrop-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 三段自然介绍 (magazine grid) */
+    .magazine-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.2rem;
+    }
+    .mag-item {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 1.4rem;
+      border: 1px solid #e1e7f0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s ease;
+    }
+    .mag-item:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+    }
+    .mag-item .num {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      color: #6b7280;
+      background: #f0f3f9;
+      padding: 0.1rem 0.7rem;
+      border-radius: 20px;
+      margin-bottom: 0.8rem;
+      border: 1px solid #dbe1ec;
+    }
+    .mag-item h3 {
+      font-weight: 500;
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+      color: #1e293b;
+    }
+    .mag-item p {
+      font-size: 0.95rem;
+      color: #3f4a5a;
+    }
+
+    /* FAQ 摘要 (简洁) */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #dfe6f0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    }
+    .faq-mini h2 {
+      font-size: 1.3rem;
+      font-weight: 450;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+    .faq-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+    }
+    .faq-item {
+      flex: 1 1 200px;
+      background: #f8fafd;
+      border-radius: 16px;
+      padding: 0.8rem 1.2rem;
+      border: 1px solid #e6edf5;
+    }
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #1f2a3a;
+      margin-bottom: 0.2rem;
+    }
+    .faq-item span {
+      font-size: 0.9rem;
+      color: #4b5a6e;
+    }
+
+    /* 页尾访问提示 */
+    .footer-note {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 2rem;
+      text-align: center;
+      border: 1px solid #d9e1ed;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      margin-top: 0.5rem;
+    }
+    .footer-note p {
+      font-size: 1rem;
+      color: #263340;
+      margin-bottom: 0.6rem;
+    }
+    .footer-note .link-sentence {
+      background: #f4f7fc;
+      display: inline-block;
+      padding: 0.6rem 1.8rem;
+      border-radius: 60px;
+      border: 1px solid #ccd8e8;
+      font-size: 1.05rem;
+    }
+    .footer-note a {
+      color: #1f3a6b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #a0b6d0;
+    }
+    .footer-note a:hover {
+      border-bottom: 2px solid #1f3a6b;
+    }
+    .footer-note small {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #6b7a8e;
+    }
+
+    /* responsive */
+    @media (max-width: 780px) {
+      .magazine-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+    @media (max-width: 550px) {
+      .magazine-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding: 2rem 1rem;
+      }
+      .backdrop-card, .faq-mini, .footer-note {
+        padding: 1.5rem 1rem;
+      }
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 首页横幅 hero -->
+  <div class="hero">
+    <h1>hth · 专题</h1>
+    <div class="sub">
+      一个偏向简洁、克制的站点索引<br>
+      快速识别用途与适用场景
+    </div>
+    <div class="badge">杂志式介绍 · 轻阅读</div>
+  </div>
+
+  <!-- 背景说明 -->
+  <div class="backdrop-card">
+    <h2>这个页面关于什么？</h2>
+    <p>当你打开一个陌生链接，首先想知道的是：这个网站做什么用？它是否匹配我的需求？这里以 <strong>hth</strong> 为核心标识，整理了三段自然介绍以及一些常见疑问摘要，帮助你快速决定是否进一步了解。</p>
+    <p>内容保持平实，不夸大也不模糊。以下信息均基于公开可查的方向归纳，并非官方说明。</p>
+  </div>
+
+  <!-- 三段自然介绍 (杂志卡片) -->
+  <div class="magazine-grid">
+    <div class="mag-item">
+      <div class="num">01</div>
+      <h3>使用场景</h3>
+      <p>日常信息查询、资料索引、轻量工具集合。界面以功能为导向，减少不必要的装饰，适合追求效率的使用者。从使用路径来看，每一步都经过收敛。</p>
+    </div>
+    <div class="mag-item">
+      <div class="num">02</div>
+      <h3>结构特点</h3>
+      <p>采用模块化分区，主路径清晰。没有深层嵌套菜单，主要操作在三步以内可达。首页整合常见入口，减少来回跳转的频率。整体布局偏向宽屏适配。</p>
+    </div>
+    <div class="mag-item">
+      <div class="num">03</div>
+      <h3>内容基调</h3>
+      <p>不堆砌术语，也不刻意简化。以中性语气呈现功能说明，保持阅读的流畅感。部分页面配有简短图文说明，方便使用者理解上下文，减少试错成本。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 (符合用户想快速识别用途) -->
+  <div class="faq-mini">
+    <h2>快速识别 · 常见疑问</h2>
+    <div class="faq-row">
+      <div class="faq-item">
+        <strong>是否需注册？</strong>
+        <span>部分功能免登，完整使用可能需要创建身份，具体以页面提示为准。</span>
+      </div>
+      <div class="faq-item">
+        <strong>主要面向谁？</strong>
+        <span>普通网络使用者、轻办公场景、以及习惯直接访问而非通过应用商店的用户。</span>
+      </div>
+      <div class="faq-item">
+        <strong>内容更新频率？</strong>
+        <span>不定时迭代，以实际部署版本为准。无固定发布周期。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页尾访问提示 (自然嵌入 a 标签) -->
+  <div class="footer-note">
+    <p>若以上信息符合你的预期，可前往 <a href="https://home-ssl-hth.com">hth</a> 进一步了解具体内容。</p>
+    <div class="link-sentence">
+      本次介绍基于公开观察 · 页面标识: hth
+    </div>
+    <small>© 杂志专题 · 仅展示页面结构</small>
+  </div>
+
+</div>
+</body>
+</html>
